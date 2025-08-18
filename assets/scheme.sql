@@ -26,9 +26,10 @@ CREATE TABLE beds (
     FOREIGN KEY (room_id) REFERENCES rooms(room_id) ON DELETE CASCADE
 );
 
--- Medical Medicines Table
-CREATE TABLE medical_medicines (
+-- Unified Medicines Table
+CREATE TABLE medicines (
     medicine_id INT AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('Medical', 'Dental') NOT NULL,  -- identifies medicine type
     medicine_name VARCHAR(100) NOT NULL,
     medicine_dosage VARCHAR(50),
     medicine_unit VARCHAR(50),
@@ -41,24 +42,9 @@ CREATE TABLE medical_medicines (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Dental Medicines Table
-CREATE TABLE dental_medicines (
-    medicine_id INT AUTO_INCREMENT PRIMARY KEY,
-    medicine_name VARCHAR(100) NOT NULL,
-    medicine_dosage VARCHAR(50),
-    medicine_unit VARCHAR(50),
-    medicine_stock INT DEFAULT 0,
-    medicine_expiry_date DATE,
-    medicine_classification TEXT,
-    medicine_brand_name VARCHAR(100),
-    medicine_generic_name VARCHAR(100),
-    medicine_description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Medical Supplies Table
-CREATE TABLE medical_supplies (
+CREATE TABLE supplies (
     supply_id INT AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('Medical', 'Dental') NOT NULL,   -- identifies supply type
     supply_name VARCHAR(100) NOT NULL,
     supply_quantity INT DEFAULT 0,
     supply_unit VARCHAR(50),
@@ -69,38 +55,12 @@ CREATE TABLE medical_supplies (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Dental Supplies Table
-CREATE TABLE dental_supplies (
-    supply_id INT AUTO_INCREMENT PRIMARY KEY,
-    supply_name VARCHAR(100) NOT NULL,
-    supply_quantity INT DEFAULT 0,
-    supply_unit VARCHAR(50),
-    supply_expiry_date DATE,
-    supply_classification TEXT,
-    supply_brand_name VARCHAR(100),
-    supply_description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Medical Equipment Table
-CREATE TABLE medical_equipment (
+CREATE TABLE equipment (
     equipment_id INT AUTO_INCREMENT PRIMARY KEY,
+    type ENUM('Medical', 'Dental') NOT NULL,   -- identifies equipment type
     equipment_name VARCHAR(100) NOT NULL,
     serial_number VARCHAR(100),
-    equipment_condition VARCHAR(50),
-    remarks TEXT,
-    equipment_location VARCHAR(100),
-    equipment_classification TEXT,
-    equipment_description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Dental Equipment Table
-CREATE TABLE dental_equipment (
-    equipment_id INT AUTO_INCREMENT PRIMARY KEY,
-    equipment_name VARCHAR(100) NOT NULL,
-    serial_number VARCHAR(100),
-    equipment_condition VARCHAR(50),
+    equipment_condition ENUM('available','occupied','maintenance') DEFAULT 'available',
     remarks TEXT,
     equipment_location VARCHAR(100),
     equipment_classification TEXT,

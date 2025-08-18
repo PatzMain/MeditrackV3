@@ -14,7 +14,7 @@
 <body>
     <!-- Sidebar -->
     <?php
-    $currentPage = 'medicines';
+    $currentPage = 'activity_logs';
     include '../includes/navbar.php';
     ?>
     <div class="container">
