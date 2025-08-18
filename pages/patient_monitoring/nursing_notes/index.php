@@ -1,17 +1,45 @@
-<?php
-include '../../../api/vital_signs.php';
-?>
+
+<?php require_once '../../../api/auth.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Meditrack - Medicines</title>
+    <?php include '../../includes/styles.php'; ?>
 </head>
+
 <body>
-    <h1>Nursing Notes</h1>
-    <p><?php echo "work in progress"; ?></p>
-    
-    <!-- Add your HTML and PHP code for displaying vital signs here -->
+    <!-- Sidebar -->
+    <?php
+    $currentPage = 'medicines';
+    include '../../includes/navbar.php';
+    ?>
+    <div class="container">
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <?php
+            $pageKey = 'medicines';
+            include '../../includes/page-header.php';
+            include '../../includes/stats-cards.php';
+            ?>
+
+            <!-- Search and Filters -->
+
+            <!-- Add Button -->
+
+            <!-- Print Button -->
+
+            <!-- Export Button to csv-->
+
+            <!-- Table Section -->
+        </main>
+    </div>
+    <script src="../../js/sort.js"></script>
 </body>
 </html>

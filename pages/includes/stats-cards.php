@@ -1,6 +1,12 @@
 <?php
-// Load config and select the correct page set
-$config = include '../../config/stats_cards.php';
+// Detect if inside patient_monitoring (depth 2)
+$isMonitoring = strpos($_SERVER['PHP_SELF'], 'patient_monitoring/') !== false;
+
+// Base path depending on depth
+$basePath = $isMonitoring ? '../../../' : '../../';
+
+// Load page configuration
+$config = include $basePath . 'config/stats_cards.php';
 $statsData = $config[$pageKey] ?? [];
 
 if (!empty($statsData) && is_array($statsData)): ?>

@@ -34,11 +34,7 @@ CREATE TABLE medical_medicines (
     medicine_unit VARCHAR(50),
     medicine_stock INT DEFAULT 0,
     medicine_expiry_date DATE,
-    medicine_classification ENUM(
-        'Antibiotic', 'Analgesic', 'Antipyretic', 'Antihistamine', 'Antiseptic',
-        'Antifungal', 'Antiviral', 'Vaccine', 'Supplement', 'Cough Suppressant',
-        'Decongestant', 'Anti-inflammatory', 'Antacid', 'Laxative', 'Other'
-    ),
+    medicine_classification TEXT,
     medicine_brand_name VARCHAR(100),
     medicine_generic_name VARCHAR(100),
     medicine_description TEXT,
@@ -53,11 +49,7 @@ CREATE TABLE dental_medicines (
     medicine_unit VARCHAR(50),
     medicine_stock INT DEFAULT 0,
     medicine_expiry_date DATE,
-    medicine_classification ENUM(
-        'Fluoride Treatment', 'Local Anesthetic', 'Desensitizing Agent',
-        'Dental Antibiotic', 'Mouth Rinse', 'Topical Analgesic', 'Oral Antifungal',
-        'Gingivitis Treatment', 'Periodontitis Treatment', 'Dry Mouth Treatment', 'Other'
-    ),
+    medicine_classification TEXT,
     medicine_brand_name VARCHAR(100),
     medicine_generic_name VARCHAR(100),
     medicine_description TEXT,
@@ -71,10 +63,7 @@ CREATE TABLE medical_supplies (
     supply_quantity INT DEFAULT 0,
     supply_unit VARCHAR(50),
     supply_expiry_date DATE,
-    supply_classification ENUM(
-        'Syringe', 'Gloves', 'Bandage', 'Cotton', 'Alcohol Swab',
-        'Face Mask', 'IV Set', 'Thermometer Cover', 'Disinfectant', 'Protective Gown', 'Other'
-    ),
+    supply_classification TEXT,
     supply_brand_name VARCHAR(100),
     supply_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -87,10 +76,7 @@ CREATE TABLE dental_supplies (
     supply_quantity INT DEFAULT 0,
     supply_unit VARCHAR(50),
     supply_expiry_date DATE,
-    supply_classification ENUM(
-        'Dental Bib', 'Cotton Roll', 'Dental Floss', 'Dental Impression Material',
-        'Saliva Ejector', 'Dental Tray Cover', 'Disinfectant', 'Protective Gown', 'Other'
-    ),
+    supply_classification TEXT,
     supply_brand_name VARCHAR(100),
     supply_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -104,10 +90,7 @@ CREATE TABLE medical_equipment (
     equipment_condition VARCHAR(50),
     remarks TEXT,
     equipment_location VARCHAR(100),
-    equipment_classification ENUM(
-        'Stethoscope', 'Blood Pressure Monitor', 'Otoscope', 'Weighing Scale',
-        'Nebulizer', 'Sterilizer/Autoclave', 'Examination Light', 'Other'
-    ),
+    equipment_classification TEXT,
     equipment_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -120,10 +103,7 @@ CREATE TABLE dental_equipment (
     equipment_condition VARCHAR(50),
     remarks TEXT,
     equipment_location VARCHAR(100),
-    equipment_classification ENUM(
-        'Dental Chair', 'Dental Drill', 'Ultrasonic Scaler', 'Curing Light',
-        'X-ray Machine', 'Sterilizer/Autoclave', 'Examination Light', 'Other'
-    ),
+    equipment_classification TEXT,
     equipment_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -139,11 +119,11 @@ CREATE TABLE patients (
     blood_group VARCHAR(5),
     phone VARCHAR(20),
     email VARCHAR(100),
-    student_type ENUM('College', 'LSHS') NOT NULL,  -- Added
-    course VARCHAR(100),                           -- For College
-    year_level INT,                                -- For College
-    grade_level INT,                               -- For LSHS
-    strand VARCHAR(100),                           -- For LSHS
+    student_type ENUM('College', 'LSHS') NOT NULL,
+    course VARCHAR(100),                           
+    year_level INT,                                
+    grade_level INT,                               
+    strand VARCHAR(100),                           
     patient_address TEXT,
     emergency_contact_name VARCHAR(100),
     emergency_contact_phone VARCHAR(20),

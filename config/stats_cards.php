@@ -1,59 +1,85 @@
 <?php
 return [
-    'medicines' => [
-        [
-            'key' => 'total',
-            'label' => 'Total Medicines',
-            'value' => $stats['total'] ?? 0,
-            'bgColor' => '#f0f4ff',
-            'svgColor' => '#1e40af',
-            'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="#1e40af">
-                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14
-                             c0 1.1.9 2 2 2h14c1.1 0 
-                             2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 
-                             14H7v-2h7v2zm3-4H7v-2h10v2zm0-4
-                             H7V7h10v2z"/>
-                 </svg>'
-        ],
-        [
-            'key' => 'low_stock',
-            'label' => 'Low Stock',
-            'value' => $stats['low_stock'] ?? 0,
-            'bgColor' => '#fff7ed',
-            'svgColor' => '#f97316',
-            'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="#f97316">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M10 17l-5-5 1.41-1.41L10 14.17
-                             l7.59-7.59L19 8l-9 9z" fill="#fff"/>
-                 </svg>'
-        ],
-        [
-            'key' => 'expired',
-            'label' => 'Expired',
-            'value' => $stats['expired'] ?? 0,
-            'bgColor' => '#fef2f2',
-            'svgColor' => '#dc2626',
-            'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="#dc2626">
-                    <path d="M12 2C6.48 2 2 6.48 2 12
-                             s4.48 10 10 10 10-4.48 10-10S17.52 
-                             2 12 2zm-1 15h2v2h-2v-2zm0-8h2v6
-                             h-2V9z"/>
-                 </svg>'
-        ],
-        [
-            'key' => 'expiring_soon',
-            'label' => 'Expiring Soon',
-            'value' => $stats['expiring_soon'] ?? 0,
-            'bgColor' => '#fffbeb',
-            'svgColor' => '#ca8a04',
-            'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="#ca8a04">
-                    <polygon points="12,2 15.09,8.26 22,9.27 
-                                     17,14.14 18.18,21.02 
-                                     12,17.77 5.82,21.02 
-                                     7,14.14 2,9.27 8.91,8.26"/>
-                 </svg>'
-        ]
-    ]
-];
 
-?>
+    // ========================
+    // MEDICINES
+    // ========================
+    'medical_medicines' => [
+        ['key' => 'medical_medicines_total', 'label' => 'Total Medicines', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#3b82f6" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#3b82f6" stroke-width="2"/><circle cx="12" cy="14" r="3" fill="#3b82f6"/><path d="M12 11v6M9 14h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+        ['key' => 'medical_medicines_low', 'label' => 'Low Stock', 'bgColor' => '#fed7aa', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#ea580c" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#ea580c" stroke-width="2"/><path d="M12 10v4M10 12h4" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/><path d="M12 16.5h.01" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'medical_medicines_expired', 'label' => 'Expired', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#dc2626" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#dc2626" stroke-width="2"/><path d="M9 11l6 6M15 11l-6 6" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'medical_medicines_expiring', 'label' => 'Expiring Soon', 'bgColor' => '#fef3c7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#d97706" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#d97706" stroke-width="2"/><circle cx="12" cy="14" r="4" stroke="#d97706" stroke-width="2"/><path d="M12 12v2l1.5 1.5" stroke="#d97706" stroke-width="2" stroke-linecap="round"/></svg>'],
+    ],
+
+    'dental_medicines' => [
+        ['key' => 'dental_medicines_total', 'label' => 'Total Medicines', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#1d4ed8" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#1d4ed8" stroke-width="2"/><path d="M8 10c0 2.5 2 4 4 4s4-1.5 4-4M8 10c0-1 .5-2 2-2s2 1 2 2M16 10c0-1-.5-2-2-2s-2 1-2 2" fill="none" stroke="#1d4ed8" stroke-width="1.5"/><path d="M12 11v6M9 14h6" stroke="#1d4ed8" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+        ['key' => 'dental_medicines_low', 'label' => 'Low Stock', 'bgColor' => '#fed7aa', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#ea580c" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#ea580c" stroke-width="2"/><path d="M8 10c0 2.5 2 4 4 4s4-1.5 4-4M8 10c0-1 .5-2 2-2s2 1 2 2M16 10c0-1-.5-2-2-2s-2 1-2 2" fill="none" stroke="#ea580c" stroke-width="1.5"/><path d="M12 16.5h.01" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'dental_medicines_expired', 'label' => 'Expired', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#dc2626" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#dc2626" stroke-width="2"/><path d="M8 10c0 2.5 2 4 4 4s4-1.5 4-4M8 10c0-1 .5-2 2-2s2 1 2 2M16 10c0-1-.5-2-2-2s-2 1-2 2" fill="none" stroke="#dc2626" stroke-width="1.5"/><path d="M9 11l6 6M15 11l-6 6" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'dental_medicines_expiring', 'label' => 'Expiring Soon', 'bgColor' => '#fef3c7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6.5L19.5 6.5C20.6 6.5 21.5 7.4 21.5 8.5V19.5C21.5 20.6 20.6 21.5 19.5 21.5H4.5C3.4 21.5 2.5 20.6 2.5 19.5V8.5C2.5 7.4 3.4 6.5 4.5 6.5Z" stroke="#d97706" stroke-width="2"/><path d="M7 6.5V4.5C7 3.4 7.9 2.5 9 2.5H15C16.1 2.5 17 3.4 17 4.5V6.5" stroke="#d97706" stroke-width="2"/><path d="M8 10c0 2.5 2 4 4 4s4-1.5 4-4M8 10c0-1 .5-2 2-2s2 1 2 2M16 10c0-1-.5-2-2-2s-2 1-2 2" fill="none" stroke="#d97706" stroke-width="1.5"/><circle cx="18" cy="18" r="4" stroke="#d97706" stroke-width="1.5"/><path d="M18 16v2l1 1" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+    ],
+
+    // ========================
+    // SUPPLIES
+    // ========================
+    'medical_supplies' => [
+        ['key' => 'medical_supplies_total', 'label' => 'Total Supplies', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#3b82f6" stroke-width="2"/><path d="M8 9h8M8 12h8M8 15h5" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'medical_supplies_low', 'label' => 'Low Stock', 'bgColor' => '#fed7aa', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#ea580c" stroke-width="2"/><path d="M8 9h8M8 12h4M8 15h2" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/><path d="M12 10v4M10 12h4" stroke="#ea580c" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+        ['key' => 'medical_supplies_expired', 'label' => 'Expired', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#dc2626" stroke-width="2"/><path d="M9 9l6 6M15 9l-6 6" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'medical_supplies_expiring', 'label' => 'Expiring Soon', 'bgColor' => '#fef3c7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#d97706" stroke-width="2"/><path d="M8 9h8M8 12h6M8 15h4" stroke="#d97706" stroke-width="2" stroke-linecap="round"/><circle cx="18" cy="18" r="4" stroke="#d97706" stroke-width="1.5"/><path d="M18 16v2l1 1" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+    ],
+
+    'dental_supplies' => [
+        ['key' => 'dental_supplies_total', 'label' => 'Total Supplies', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#1d4ed8" stroke-width="2"/><path d="M8 9h8M8 12h8M8 15h5" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round"/><path d="M15 4c0 2.5-2 4-4 4s-4-1.5-4-4" stroke="#1d4ed8" stroke-width="1" fill="none"/></svg>'],
+        ['key' => 'dental_supplies_low', 'label' => 'Low Stock', 'bgColor' => '#fed7aa', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#ea580c" stroke-width="2"/><path d="M8 9h8M8 12h4M8 15h2" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/><path d="M15 4c0 2.5-2 4-4 4s-4-1.5-4-4" stroke="#ea580c" stroke-width="1" fill="none"/><path d="M12 16.5h.01" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'dental_supplies_expired', 'label' => 'Expired', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#dc2626" stroke-width="2"/><path d="M15 4c0 2.5-2 4-4 4s-4-1.5-4-4" stroke="#dc2626" stroke-width="1" fill="none"/><path d="M9 9l6 6M15 9l-6 6" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'dental_supplies_expiring', 'label' => 'Expiring Soon', 'bgColor' => '#fef3c7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V7c0-2.2-1.8-4-4-4H7c-2.2 0-4 1.8-4 4z" stroke="#d97706" stroke-width="2"/><path d="M8 9h8M8 12h6M8 15h4" stroke="#d97706" stroke-width="2" stroke-linecap="round"/><path d="M15 4c0 2.5-2 4-4 4s-4-1.5-4-4" stroke="#d97706" stroke-width="1" fill="none"/><circle cx="18" cy="18" r="4" stroke="#d97706" stroke-width="1.5"/><path d="M18 16v2l1 1" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+    ],
+
+    // ========================
+    // EQUIPMENT
+    // ========================
+    'medical_equipment' => [
+        ['key' => 'medical_equipment_total', 'label' => 'Total Equipment', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="16" height="12" rx="2" stroke="#3b82f6" stroke-width="2"/><rect x="6" y="8" width="12" height="8" rx="1" stroke="#3b82f6" stroke-width="1.5"/><path d="M8 12h8M12 10v4" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="4" r="2" fill="#3b82f6"/></svg>'],
+        ['key' => 'medical_equipment_available', 'label' => 'Available', 'bgColor' => '#dcfce7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="16" height="12" rx="2" stroke="#16a34a" stroke-width="2"/><rect x="6" y="8" width="12" height="8" rx="1" stroke="#16a34a" stroke-width="1.5"/><path d="M9 12l2 2 4-4" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'],
+        ['key' => 'medical_equipment_occupied', 'label' => 'In Use', 'bgColor' => '#fef9c3', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="16" height="12" rx="2" stroke="#ca8a04" stroke-width="2"/><rect x="6" y="8" width="12" height="8" rx="1" stroke="#ca8a04" stroke-width="1.5"/><circle cx="10" cy="11" r="1" fill="#ca8a04"/><circle cx="14" cy="11" r="1" fill="#ca8a04"/><path d="M10 14c0 1.1.9 2 2 2s2-.9 2-2" stroke="#ca8a04" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+        ['key' => 'medical_equipment_maintenance', 'label' => 'Under Maintenance', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="16" height="12" rx="2" stroke="#dc2626" stroke-width="2"/><rect x="6" y="8" width="12" height="8" rx="1" stroke="#dc2626" stroke-width="1.5"/><path d="M12 10v2M12 14h.01" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/><path d="M14 2l1 2 2-1-1 2 2 1-2 1 1 2-2-1-1 2-1-2-2 1 1-2-2-1 2-1-1-2 2 1 1-2z" fill="#dc2626" stroke="#dc2626" stroke-width="0.5"/></svg>'],
+    ],
+
+    'dental_equipment' => [
+        ['key' => 'dental_equipment_total', 'label' => 'Total Equipment', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 6c0-2.2 1.8-4 4-4s4 1.8 4 4v2H8V6z" stroke="#1d4ed8" stroke-width="2"/><rect x="4" y="8" width="16" height="12" rx="2" stroke="#1d4ed8" stroke-width="2"/><path d="M10 14l2 2 2-2M12 12v6" stroke="#1d4ed8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'],
+        ['key' => 'dental_equipment_available', 'label' => 'Available', 'bgColor' => '#dcfce7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 6c0-2.2 1.8-4 4-4s4 1.8 4 4v2H8V6z" stroke="#16a34a" stroke-width="2"/><rect x="4" y="8" width="16" height="12" rx="2" stroke="#16a34a" stroke-width="2"/><path d="M9 14l2 2 4-4" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'],
+        ['key' => 'dental_equipment_occupied', 'label' => 'In Use', 'bgColor' => '#fef9c3', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 6c0-2.2 1.8-4 4-4s4 1.8 4 4v2H8V6z" stroke="#ca8a04" stroke-width="2"/><rect x="4" y="8" width="16" height="12" rx="2" stroke="#ca8a04" stroke-width="2"/><circle cx="10" cy="13" r="1" fill="#ca8a04"/><circle cx="14" cy="13" r="1" fill="#ca8a04"/><path d="M10 16c0 1.1.9 2 2 2s2-.9 2-2" stroke="#ca8a04" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+        ['key' => 'dental_equipment_maintenance', 'label' => 'Under Maintenance', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 6c0-2.2 1.8-4 4-4s4 1.8 4 4v2H8V6z" stroke="#dc2626" stroke-width="2"/><rect x="4" y="8" width="16" height="12" rx="2" stroke="#dc2626" stroke-width="2"/><path d="M12 12v2M12 16h.01" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/><path d="M14 2l1 2 2-1-1 2 2 1-2 1 1 2-2-1-1 2-1-2-2 1 1-2-2-1 2-1-1-2 2 1 1-2z" fill="#dc2626" stroke="#dc2626" stroke-width="0.5"/></svg>'],
+    ],
+
+    // ========================
+    // PATIENTS
+    // ========================
+    'patients' => [
+        ['key' => 'patients_total', 'label' => 'Total Patients', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#3b82f6" stroke-width="2"/><circle cx="12" cy="7" r="4" stroke="#3b82f6" stroke-width="2"/></svg>'],
+        ['key' => 'patients_admitted', 'label' => 'Admitted', 'bgColor' => '#dcfce7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#16a34a" stroke-width="2"/><circle cx="12" cy="7" r="4" stroke="#16a34a" stroke-width="2"/><path d="M9 12h6M12 9v6" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+        ['key' => 'patients_discharged', 'label' => 'Discharged', 'bgColor' => '#e0e7ff', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#4f46e5" stroke-width="2"/><circle cx="12" cy="7" r="4" stroke="#4f46e5" stroke-width="2"/><path d="M14 12l2 2-2 2M16 14H8" stroke="#4f46e5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'],
+        ['key' => 'patients_deceased', 'label' => 'Deceased', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#dc2626" stroke-width="2"/><circle cx="12" cy="7" r="4" stroke="#dc2626" stroke-width="2"/><path d="M9 9l6 6M15 9l-6 6" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+    ],
+
+    // ========================
+    // USERS
+    // ========================
+    'users' => [
+        ['key' => 'users_total', 'label' => 'Total Users', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#3b82f6" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="#3b82f6" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#3b82f6" stroke-width="2"/></svg>'],
+        ['key' => 'users_admin', 'label' => 'Admins', 'bgColor' => '#e0e7ff', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#4f46e5" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="#4f46e5" stroke-width="2"/><path d="M22 12l-3-3v2h-4v2h4v2l3-3z" fill="#4f46e5"/></svg>'],
+        ['key' => 'users_superadmin', 'label' => 'Superadmins', 'bgColor' => '#dcfce7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#16a34a" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="#16a34a" stroke-width="2"/><path d="M12 2l1.5 3 3.5.5-2.5 2.5.5 3.5-3-1.5-3 1.5.5-3.5L6.5 5.5 10 5 12 2z" fill="#16a34a" stroke="#16a34a" stroke-width="0.5"/></svg>'],
+        ['key' => 'users_recent', 'label' => 'New (7 days)', 'bgColor' => '#fef3c7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#d97706" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="#d97706" stroke-width="2"/><path d="M22 4v6h-6" stroke="#d97706" stroke-width="2"/><path d="M16 4l4 4" stroke="#d97706" stroke-width="2" stroke-linecap="round"/></svg>'],
+    ],
+
+    // ========================
+    // ACTIVITY LOGS
+    // ========================
+    'activity_logs' => [
+        ['key' => 'logs_total', 'label' => 'Total Logs', 'bgColor' => '#dbeafe', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#3b82f6" stroke-width="2"/><path d="M14 2v6h6" stroke="#3b82f6" stroke-width="2"/><path d="M8 13h8M8 17h8M8 9h2" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/></svg>'],
+        ['key' => 'logs_patient', 'label' => 'Patient Logs', 'bgColor' => '#dcfce7', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#16a34a" stroke-width="2"/><path d="M14 2v6h6" stroke="#16a34a" stroke-width="2"/><circle cx="12" cy="13" r="2" stroke="#16a34a" stroke-width="1.5"/><path d="M8 17h8" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+        ['key' => 'logs_system', 'label' => 'System/Auth Logs', 'bgColor' => '#e0e7ff', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#4f46e5" stroke-width="2"/><path d="M14 2v6h6" stroke="#4f46e5" stroke-width="2"/><rect x="9" y="11" width="6" height="4" rx="1" stroke="#4f46e5" stroke-width="1.5"/><path d="M10 11v-1a2 2 0 1 1 4 0v1" stroke="#4f46e5" stroke-width="1.5"/></svg>'],
+        ['key' => 'logs_medicines', 'label' => 'Medicine Logs', 'bgColor' => '#fecaca', 'svg' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#dc2626" stroke-width="2"/><path d="M14 2v6h6" stroke="#dc2626" stroke-width="2"/><circle cx="12" cy="13" r="2" stroke="#dc2626" stroke-width="1.5"/><path d="M12 11v4M10 13h4" stroke="#dc2626" stroke-width="1" stroke-linecap="round"/><path d="M8 17h8" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round"/></svg>'],
+    ],
+
+];
