@@ -61,8 +61,6 @@ CREATE TABLE equipment (
     equipment_name VARCHAR(100) NOT NULL,
     serial_number VARCHAR(100),
     equipment_condition ENUM('available','occupied','maintenance') DEFAULT 'available',
-    remarks TEXT,
-    equipment_location VARCHAR(100),
     equipment_classification TEXT,
     equipment_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
