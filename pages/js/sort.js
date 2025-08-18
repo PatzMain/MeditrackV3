@@ -344,41 +344,7 @@ window.TableSort = (function() {
     // ========================================
     // SEARCH & FILTER FUNCTIONS
     // ========================================
-
-    /**
-     * Enhanced search with debouncing
-     */
-    function enhancedSearch() {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(function() {
-            const searchInput = document.getElementById('searchInput');
-            const filterSelect = document.getElementById('filterSelect');
-            
-            if (!searchInput) return;
-            
-            const searchTerm = searchInput.value;
-            const filter = filterSelect ? filterSelect.value : 'all';
-            
-            // Update URL with search parameters
-            const url = new URL(window.location);
-            
-            if (searchTerm) {
-                url.searchParams.set('search', searchTerm);
-            } else {
-                url.searchParams.delete('search');
-            }
-            
-            if (filter && filter !== 'all') {
-                url.searchParams.set('filter', filter);
-            } else {
-                url.searchParams.delete('filter');
-            }
-            
-            // Reload page with new parameters
-            window.location.href = url.toString();
-        }, 500);
-    }
-
+    
     /**
      * Clear all filters and search
      */

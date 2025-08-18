@@ -139,20 +139,6 @@ CREATE TABLE medical_assessments (
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE
 );
 
--- Nursing Notes Table
-CREATE TABLE nursing_notes (
-    note_id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT NOT NULL,
-    nursing_shift ENUM('morning', 'afternoon', 'night') NOT NULL,
-    nursing_note_type ENUM('assessment', 'care_plan', 'medication', 'incident', 'discharge_prep', 'general') NOT NULL,
-    nursing_note_content TEXT NOT NULL,
-    nursing_action_taken TEXT,
-    nursing_follow_up_needed BOOLEAN DEFAULT FALSE,
-    nursing_priority ENUM('low', 'medium', 'high') DEFAULT 'low',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE
-);
-
 -- Activity Logs Table
 CREATE TABLE activity_logs (
     log_id INT AUTO_INCREMENT PRIMARY KEY,

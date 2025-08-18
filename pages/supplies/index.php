@@ -24,7 +24,7 @@
         <main class="main-content">
             <!-- Header -->
             <?php
-            $pageKey = 'medicines';
+            $pageKey = 'supplies'; // Set the page key for stats cards
             include '../includes/page-header.php';
             include '../includes/stats-cards.php';
             ?>

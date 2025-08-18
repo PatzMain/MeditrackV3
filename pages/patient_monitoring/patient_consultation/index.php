@@ -1,5 +1,4 @@
-
-<?php require_once '../../../api/auth.php';?>
+<?php require_once '../../../api/auth.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,7 @@
 <body>
     <!-- Sidebar -->
     <?php
-    $currentPage = 'medicines';
+    $currentPage = 'patient_consultation';
     include '../../includes/navbar.php';
     ?>
     <div class="container">
@@ -24,16 +23,23 @@
         <main class="main-content">
             <!-- Header -->
             <?php
-            $pageKey = 'medicines';
+            $pageKey = 'patient_consultation';
             include '../../includes/page-header.php';
+            ?>
+            <?php
+            $pageKey = 'patients'; // Set the page key for stats cards
             include '../../includes/stats-cards.php';
             ?>
+            
+
+            <!-- Simple Preview Button -->
+            <a href="Consultation-Form.pdf" target="_blank">
+                <button type="button">Print Patient Consultation Form</button>
+            </a>
 
             <!-- Search and Filters -->
 
             <!-- Add Button -->
-
-            <!-- Print Button -->
 
             <!-- Export Button to csv-->
 
@@ -42,4 +48,5 @@
     </div>
     <script src="../../js/sort.js"></script>
 </body>
+
 </html>

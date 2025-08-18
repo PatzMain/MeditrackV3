@@ -14,7 +14,7 @@
 <body>
     <!-- Sidebar -->
     <?php
-    $currentPage = 'medicines';
+    $currentPage = 'equipment';
     include '../includes/navbar.php';
     ?>
     <div class="container">
@@ -24,7 +24,7 @@
         <main class="main-content">
             <!-- Header -->
             <?php
-            $pageKey = 'medicines';
+            $pageKey = 'equipment';
             include '../includes/page-header.php';
             include '../includes/stats-cards.php';
             ?>

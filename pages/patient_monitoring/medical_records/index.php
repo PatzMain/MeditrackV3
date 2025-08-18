@@ -14,7 +14,7 @@
 <body>
     <!-- Sidebar -->
     <?php
-    $currentPage = 'medicines';
+    $currentPage = 'medical_records'; // Set the current page for the sidebar
     include '../../includes/navbar.php';
     ?>
     <div class="container">
@@ -24,7 +24,7 @@
         <main class="main-content">
             <!-- Header -->
             <?php
-            $pageKey = 'medicines';
+            $pageKey = 'medical_records'; // Set the page key for stats cards
             include '../../includes/page-header.php';
             include '../../includes/stats-cards.php';
             ?>

@@ -153,15 +153,6 @@ function confirmDelete() {
     });
 }
 
-// Close modals when clicking outside
-window.onclick = function(event) {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        if (event.target === modal) {
-            closeModal(modal.id);
-        }
-    });
-}
 
 // ESC key to close modals
 document.addEventListener('keydown', function(e) {

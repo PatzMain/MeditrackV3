@@ -14,7 +14,7 @@
 <body>
     <!-- Sidebar -->
     <?php
-    $currentPage = 'medicines';
+    $currentPage = 'dashboard'; // Set the current page for the sidebar
     include '../includes/navbar.php';
     ?>
     <div class="container">
@@ -24,20 +24,11 @@
         <main class="main-content">
             <!-- Header -->
             <?php
-            $pageKey = 'medicines';
+            $pageKey = 'dashboard'; // Set the page key for stats cards
             include '../includes/page-header.php';
             include '../includes/stats-cards.php';
             ?>
-
-            <!-- Search and Filters -->
-
-            <!-- Add Button -->
-
-            <!-- Print Button -->
-
-            <!-- Export Button to csv-->
-
-            <!-- Table Section -->
+            <!-- charts -->
         </main>
     </div>
     <script src="../js/sort.js"></script>

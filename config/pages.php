@@ -1,33 +1,21 @@
 <?php
 return [
     // Medicines
-    'medical_medicines' => [
-        'title'    => 'Medical Medicines',
-        'subtitle' => 'Manage medical medicines inventory'
-    ],
-    'dental_medicines' => [
-        'title'    => 'Dental Medicines',
-        'subtitle' => 'Manage dental medicines inventory'
+    'medicines' => [
+        'title'    => 'Medicines',
+        'subtitle' => 'Manage medical and dental medicines inventory'
     ],
 
     // Equipment
-    'medical_equipment' => [
-        'title'    => 'Medical Equipment',
-        'subtitle' => 'Manage medical equipment inventory'
-    ],
-    'dental_equipment' => [
-        'title'    => 'Dental Equipment',
-        'subtitle' => 'Manage dental equipment inventory'
+    'equipment' => [
+        'title'    => 'Equipment',
+        'subtitle' => 'Manage medical and dental equipment inventory'
     ],
 
     // Supplies
-    'medical_supplies' => [
-        'title'    => 'Medical Supplies',
-        'subtitle' => 'Manage medical supplies inventory'
-    ],
-    'dental_supplies' => [
-        'title'    => 'Dental Supplies',
-        'subtitle' => 'Manage dental supplies inventory'
+    'supplies' => [
+        'title'    => 'Supplies',
+        'subtitle' => 'Manage medical and dental supplies inventory'
     ],
 
     // Patients

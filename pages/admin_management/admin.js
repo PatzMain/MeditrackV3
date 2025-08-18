@@ -258,16 +258,6 @@ document.getElementById('editPassword').addEventListener('input', function () {
     checkPasswordStrength(this.value, 'editPasswordStrength');
 });
 
-// Close modal when clicking outside
-window.addEventListener('click', function (e) {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        if (e.target === modal) {
-            closeModal(modal.id);
-        }
-    });
-});
-
 // Close modal with Escape key
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {

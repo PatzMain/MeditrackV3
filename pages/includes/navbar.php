@@ -41,14 +41,12 @@ $basePath = $isMonitoring ? '../../' : '../';
                 <a href="<?= $basePath ?>patient_monitoring/patient_consultation/" class="<?php if ($currentPage === 'patient_consultation')
                       echo 'active'; ?>"> Patient
                     Consultation</a>
-                <a href="<?= $basePath ?>patient_monitoring/vital_signs/" class="<?php if ($currentPage === 'vital_signs')
-                      echo 'active'; ?>"> Vital Signs</a>
                 <a href="<?= $basePath ?>patient_monitoring/medical_records/" class="<?php if ($currentPage === 'medical_records')
                       echo 'active'; ?>"> Medical Records</a>
-                <a href="<?= $basePath ?>patient_monitoring/nursing_notes/" class="<?php if ($currentPage === 'nursing_notes')
-                      echo 'active'; ?>"> Nursing Notes</a>
             </div>
         </div>
+
+
         <a href="<?= $basePath ?>medicines/" class="nav-item <?php if ($currentPage === 'medicines')
               echo 'active'; ?>"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -57,6 +55,8 @@ $basePath = $isMonitoring ? '../../' : '../';
                 <path d="M21 15.5C21 15.5 16 10.5 12 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
             </svg> Medicines</a>
+
+
         <a href="<?= $basePath ?>supplies/" class="nav-item <?php if ($currentPage === 'supplies')
               echo 'active'; ?>"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -70,6 +70,8 @@ $basePath = $isMonitoring ? '../../' : '../';
                 <line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
             </svg> Supplies</a>
+
+
         <a href="<?= $basePath ?>equipment/" class="nav-item <?php if ($currentPage === 'equipment')
               echo 'active'; ?>"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -79,6 +81,7 @@ $basePath = $isMonitoring ? '../../' : '../';
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg> Equipment</a>
 
+            
         <!-- Admin Management -->
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'superadmin'): ?>
             <a href="<?= $basePath ?>admin_management/" class="nav-item <?php if ($currentPage === 'admin_management')
@@ -89,7 +92,7 @@ $basePath = $isMonitoring ? '../../' : '../';
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
                 </svg>
-                 Admin Management
+                Admin Management
             </a>
         <?php endif; ?>
 
@@ -108,7 +111,7 @@ $basePath = $isMonitoring ? '../../' : '../';
                 <polyline points="10,9 9,9 8,9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
             </svg>
-             Activity Logs</a>
+            Activity Logs</a>
     </div>
     <div class="logout">
         <a href="<?= $basePath ?>logout/" class="nav-item">
@@ -121,47 +124,47 @@ $basePath = $isMonitoring ? '../../' : '../';
                 <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
             </svg>
-             Logout</a>
+            Logout</a>
     </div>
 </nav>
 <script>
-// Sidebar and Navigation Functions
+    // Sidebar and Navigation Functions
 
-// Toggle dropdown menu
-function toggleDropdown(event) {
-    event.preventDefault();
-    const dropdown = event.currentTarget.parentElement;
-    dropdown.classList.toggle('active');
-    
-    // Close other dropdowns
-    const allDropdowns = document.querySelectorAll('.nav-dropdown');
-    allDropdowns.forEach(d => {
-        if (d !== dropdown) {
-            d.classList.remove('active');
-        }
-    });
-}
+    // Toggle dropdown menu
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdown = event.currentTarget.parentElement;
+        dropdown.classList.toggle('active');
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-    // Set active state for current page
-    const currentPath = window.location.pathname;
-    const navItems = document.querySelectorAll('.nav-item');
-    
-    navItems.forEach(item => {
-        const href = item.getAttribute('href');
-        if (href && currentPath.includes(href.replace('../', ''))) {
-            item.classList.add('active');
-        }
+        // Close other dropdowns
+        const allDropdowns = document.querySelectorAll('.nav-dropdown');
+        allDropdowns.forEach(d => {
+            if (d !== dropdown) {
+                d.classList.remove('active');
+            }
+        });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        // Set active state for current page
+        const currentPath = window.location.pathname;
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+            const href = item.getAttribute('href');
+            if (href && currentPath.includes(href.replace('../', ''))) {
+                item.classList.add('active');
+            }
+        });
+
+        // Check if current page is in a dropdown
+        const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+        dropdownLinks.forEach(link => {
+            if (currentPath.includes(link.getAttribute('href').replace('../', ''))) {
+                link.closest('.nav-dropdown').classList.add('active');
+                link.closest('.nav-dropdown').querySelector('.dropdown-toggle').classList.add('active');
+            }
+        });
     });
-    
-    // Check if current page is in a dropdown
-    const dropdownLinks = document.querySelectorAll('.dropdown-content a');
-    dropdownLinks.forEach(link => {
-        if (currentPath.includes(link.getAttribute('href').replace('../', ''))) {
-            link.closest('.nav-dropdown').classList.add('active');
-            link.closest('.nav-dropdown').querySelector('.dropdown-toggle').classList.add('active');
-        }
-    });
-});
 </script>
