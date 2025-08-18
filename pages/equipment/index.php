@@ -1,5 +1,4 @@
-
-<?php require_once '../../api/auth.php';?>
+<?php require_once '../../api/auth.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,21 +24,14 @@
             <!-- Header -->
             <?php
             $pageKey = 'equipment';
+            $pageTitle = 'Equipment';
             include '../includes/page-header.php';
             include '../includes/stats-cards.php';
+            include '../includes/search.php';
             ?>
-
-            <!-- Search and Filters -->
-
-            <!-- Add Button -->
-
-            <!-- Print Button -->
-
-            <!-- Export Button to csv-->
-
-            <!-- Table Section -->
         </main>
     </div>
     <script src="../js/sort.js"></script>
 </body>
+
 </html>

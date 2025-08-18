@@ -1,45 +1,36 @@
 <?php
-require_once '../../api/auth.php';
+require_once '../../api/auth.php';      // user authentication check
 
-// Include the stats data fetching
+// Stats data
 $stats = include '../../api/get_stats.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meditrack - Medicines</title>
     <?php include '../includes/styles.php'; ?>
 </head>
-
 <body>
-    <!-- Sidebar -->
+    <!-- Sidebar / Navbar -->
     <?php
     $currentPage = 'medicines';
     include '../includes/navbar.php';
     ?>
+
     <div class="container">
-
-        <!-- Main Content -->
         <main class="main-content">
-            <!-- Header -->
+            <!-- Page Header -->
             <?php
-            // Set page title for header
             $pageKey = 'medicines';
+            $pageTitle = 'Medicines'; 
             include '../includes/page-header.php';
-
-            // Stats Cards - Set the correct page key for medicines
-            $pageKey = 'medicines';
             include '../includes/stats-cards.php';
+            include '../includes/search.php'; 
             ?>
         </main>
     </div>
-
-    <!-- Include your existing scripts -->
     <script src="../js/sort.js"></script>
 </body>
-
 </html>

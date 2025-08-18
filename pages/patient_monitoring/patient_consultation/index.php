@@ -25,25 +25,11 @@
             <?php
             $pageKey = 'patient_consultation';
             include '../../includes/page-header.php';
-            ?>
-            <?php
-            $pageKey = 'patients'; // Set the page key for stats cards
+            $pageTitle = 'Patients'; 
+            $pageKey = 'patients';
             include '../../includes/stats-cards.php';
+            include '../../includes/search.php'; 
             ?>
-            
-
-            <!-- Simple Preview Button -->
-            <a href="Consultation-Form.pdf" target="_blank">
-                <button type="button">Print Patient Consultation Form</button>
-            </a>
-
-            <!-- Search and Filters -->
-
-            <!-- Add Button -->
-
-            <!-- Export Button to csv-->
-
-            <!-- Table Section -->
         </main>
     </div>
     <script src="../../js/sort.js"></script>

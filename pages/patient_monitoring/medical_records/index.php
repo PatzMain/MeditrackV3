@@ -24,20 +24,12 @@
         <main class="main-content">
             <!-- Header -->
             <?php
-            $pageKey = 'medical_records'; // Set the page key for stats cards
+            $pageKey = 'medical_records'; 
+            $pageTitle = 'Records'; 
             include '../../includes/page-header.php';
             include '../../includes/stats-cards.php';
+            include '../../includes/search.php'; 
             ?>
-
-            <!-- Search and Filters -->
-
-            <!-- Add Button -->
-
-            <!-- Print Button -->
-
-            <!-- Export Button to csv-->
-
-            <!-- Table Section -->
         </main>
     </div>
     <script src="../../js/sort.js"></script>
