@@ -29,43 +29,43 @@ CREATE TABLE beds (
 -- Unified Medicines Table
 CREATE TABLE medicines (
     medicine_id INT AUTO_INCREMENT PRIMARY KEY,
-    type ENUM('Medical', 'Dental') NOT NULL,  -- identifies medicine type
-    medicine_name VARCHAR(100) NOT NULL,
+    medicine_code VARCHAR(50) NOT NULL UNIQUE,
+    medicine_generic_name VARCHAR(100) NOT NULL,
+    medicine_brand_name VARCHAR(100),
+    medicine_type ENUM('Medical', 'Dental') NOT NULL,
+    medicine_classification TEXT,
     medicine_dosage VARCHAR(50),
     medicine_unit VARCHAR(50),
     medicine_stock INT DEFAULT 0,
     medicine_expiry_date DATE,
-    medicine_classification TEXT,
-    medicine_brand_name VARCHAR(100),
-    medicine_generic_name VARCHAR(100),
     medicine_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE supplies (
     supply_id INT AUTO_INCREMENT PRIMARY KEY,
-    type ENUM('Medical', 'Dental') NOT NULL,   -- identifies supply type
-    supply_name VARCHAR(100) NOT NULL,
-    supply_quantity INT DEFAULT 0,
-    supply_unit VARCHAR(50),
-    supply_expiry_date DATE,
-    supply_classification TEXT,
+    supply_code VARCHAR(50) NOT NULL UNIQUE,
+    supply_generic_name VARCHAR(100) NOT NULL,
     supply_brand_name VARCHAR(100),
+    supply_type ENUM('Medical', 'Dental') NOT NULL,
+    supply_classification TEXT,
+    supply_stock INT DEFAULT 0,
+    supply_expiry_date DATE,
     supply_description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE equipment (
+CREATE TABLE equipments (
     equipment_id INT AUTO_INCREMENT PRIMARY KEY,
-    type ENUM('Medical', 'Dental') NOT NULL,   -- identifies equipment type
-    equipment_name VARCHAR(100) NOT NULL,
-    equipment_quantity INT DEFAULT 0,
-    serial_number VARCHAR(100),
-    equipment_condition ENUM('available','occupied','maintenance') DEFAULT 'available',
-    equipment_classification TEXT,
+    equipment_code VARCHAR(50) NOT NULL UNIQUE,
+    equipment_generic_name VARCHAR(100) NOT NULL,
     equipment_brand_name VARCHAR(100),
+    equipment_type ENUM('Medical', 'Dental') NOT NULL,
+    equipment_classification TEXT,
+    equipment_condition ENUM('available','occupied','maintenance') DEFAULT 'available',
+    equipment_stock INT DEFAULT 0,
+    equipment_expiry_date DATE,
     equipment_description TEXT,
-    equipment_quantity INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -122,43 +122,15 @@ CREATE TABLE vital_signs (
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE
 );
 
--- Medical Assessments Table
-CREATE TABLE medical_assessments (
-    assessment_id INT AUTO_INCREMENT PRIMARY KEY,
-    patient_id INT NOT NULL,
-    assessment_type ENUM('initial', 'daily_round', 'consultation', 'discharge', 'emergency') NOT NULL,
-    chief_complaint TEXT,
-    present_illness TEXT,
-    physical_examination TEXT,
-    diagnosis TEXT,
-    treatment_plan TEXT,
-    prognosis TEXT,
-    follow_up_required BOOLEAN DEFAULT FALSE,
-    follow_up_date DATE,
-    priority_level ENUM('low', 'medium', 'high', 'critical') DEFAULT 'medium',
-    assessment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE
-);
-
--- Activity Logs Table
 CREATE TABLE activity_logs (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NULL,
-    patient_id INT NULL,
-    logs_item_type ENUM(
-        'medical_medicine', 'dental_medicine', 
-        'medical_supply', 'dental_supply', 
-        'medical_equipment', 'dental_equipment',
-        'authentication', 'system', 'patient', 
-        'vital_signs', 'medication_admin', 'lab_test', 'assessment'
-    ) NULL,
-    logs_item_id INT NULL,
-    logs_item_name VARCHAR(100) NULL,
-    logs_description TEXT NOT NULL,
-    logs_reason VARCHAR(255) NULL,
-    logs_quantity INT NULL,
-    logs_status VARCHAR(50) NULL,
-    logs_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_id INT NULL,      
+    patient_id INT NULL,           
+    module VARCHAR(50) NOT NULL,   
+    action VARCHAR(50) NOT NULL,   
+    description TEXT NOT NULL,     
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL,
     FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE SET NULL
 );
