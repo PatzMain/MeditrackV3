@@ -7,6 +7,9 @@
 
 <!-- Charts Section -->
 <div class="charts-section">
+    <a href="Consultation-Form.pdf">
+        <button>Patient Consultation Form</button>
+    </a>
     <div class="charts-header">
         <h2 class="charts-title">Analytics Dashboard</h2>
         <div class="charts-controls">

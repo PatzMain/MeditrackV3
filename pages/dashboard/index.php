@@ -26,8 +26,6 @@
             include '../includes/page-header.php';
             include '../includes/stats-cards.php';
             ?>
-
-
             <?php include 'charts.php'; // Include the charts file ?>
         </main>
     </div>

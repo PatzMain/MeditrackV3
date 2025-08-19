@@ -346,20 +346,104 @@ window.TableSort = (function() {
     // ========================================
     
     /**
+     * Enhanced search function that filters table rows
+     * @param {Event} event - Input event from search field
+     */
+    function enhancedSearch(event) {
+        const searchTerm = event ? event.target.value.toLowerCase() : 
+                          document.getElementById('searchInput')?.value.toLowerCase() || '';
+        
+        const table = document.querySelector('.table');
+        if (!table) return;
+        
+        const tbody = table.querySelector('tbody');
+        const rows = tbody.querySelectorAll('tr');
+        
+        let visibleCount = 0;
+        
+        rows.forEach(row => {
+            // Skip empty state rows
+            if (row.querySelector('.empty-state') || row.querySelector('[colspan]')) {
+                return;
+            }
+            
+            const cells = row.querySelectorAll('td');
+            let rowText = '';
+            
+            // Collect text from all cells except action columns
+            cells.forEach(cell => {
+                if (!cell.classList.contains('actions-cell') && 
+                    !cell.querySelector('.action-buttons-group')) {
+                    rowText += ' ' + cell.textContent.toLowerCase();
+                }
+            });
+            
+            // Show/hide row based on search match
+            if (searchTerm === '' || rowText.includes(searchTerm)) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+        
+        // Handle empty state
+        handleEmptySearchResults(tbody, visibleCount, searchTerm);
+    }
+
+    /**
+     * Handle empty search results
+     * @param {HTMLTableSectionElement} tbody - Table body
+     * @param {number} visibleCount - Number of visible rows
+     * @param {string} searchTerm - Current search term
+     */
+    function handleEmptySearchResults(tbody, visibleCount, searchTerm) {
+        // Remove existing no-results row
+        const existingNoResults = tbody.querySelector('.no-search-results');
+        if (existingNoResults) {
+            existingNoResults.remove();
+        }
+        
+        // Add no-results row if needed
+        if (visibleCount === 0 && searchTerm !== '') {
+            const table = tbody.closest('table');
+            const columnCount = table.querySelector('thead tr').children.length;
+            
+            const noResultsRow = document.createElement('tr');
+            noResultsRow.className = 'no-search-results';
+            noResultsRow.innerHTML = `
+                <td colspan="${columnCount}" style="text-align: center; padding: 20px; color: #666; font-style: italic;">
+                    No results found for "${searchTerm}"
+                </td>
+            `;
+            tbody.appendChild(noResultsRow);
+        }
+    }
+
+    /**
+     * Filter table function (wrapper for enhancedSearch for backward compatibility)
+     */
+    function filterTable() {
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            enhancedSearch({ target: searchInput });
+        }
+    }
+    
+    /**
      * Clear all filters and search
      */
     function clearFilters() {
         const searchInput = document.getElementById('searchInput');
         const filterSelect = document.getElementById('filterSelect');
         
-        if (searchInput) searchInput.value = '';
-        if (filterSelect) filterSelect.value = 'all';
-        
-        // Remove search parameters from URL
-        const url = new URL(window.location);
-        url.searchParams.delete('search');
-        url.searchParams.delete('filter');
-        window.location.href = url.toString();
+        if (searchInput) {
+            searchInput.value = '';
+            enhancedSearch({ target: searchInput });
+        }
+        if (filterSelect) {
+            filterSelect.value = 'all';
+        }
     }
 
     /**
@@ -379,13 +463,16 @@ window.TableSort = (function() {
             }
         });
         
-        // Get data rows
+        // Get data rows (only visible ones)
         table.querySelectorAll('tbody tr').forEach(tr => {
-            if (!tr.querySelector('.empty-state')) {
+            if (!tr.querySelector('.empty-state') && 
+                !tr.querySelector('.no-search-results') &&
+                tr.style.display !== 'none') {
                 const row = [];
                 tr.querySelectorAll('td').forEach((td, index) => {
                     // Skip actions column
-                    if (!td.classList.contains('actions-cell')) {
+                    if (!td.classList.contains('actions-cell') && 
+                        !td.querySelector('.action-buttons-group')) {
                         row.push(getCellValue(tr, index));
                     }
                 });
@@ -450,7 +537,15 @@ window.TableSort = (function() {
         // Set up search listeners
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
+            // Clear any existing event listeners
+            searchInput.removeEventListener('input', enhancedSearch);
+            searchInput.removeEventListener('keyup', filterTable);
+            
+            // Add new event listener
             searchInput.addEventListener('input', enhancedSearch);
+            
+            // Support for onkeyup attribute (backward compatibility)
+            searchInput.addEventListener('keyup', enhancedSearch);
         }
         
         // Set up filter listeners
@@ -482,6 +577,7 @@ window.TableSort = (function() {
         initialize: initialize,
         sortTable: sortTable,
         enhancedSearch: enhancedSearch,
+        filterTable: filterTable,
         clearFilters: clearFilters,
         exportTableData: exportTableData
     };
@@ -490,5 +586,6 @@ window.TableSort = (function() {
 // For backward compatibility, expose functions globally
 window.initializeSortable = window.TableSort.initialize;
 window.enhancedSearch = window.TableSort.enhancedSearch;
+window.filterTable = window.TableSort.filterTable;
 window.clearFilters = window.TableSort.clearFilters;
 window.exportTableData = window.TableSort.exportTableData;
